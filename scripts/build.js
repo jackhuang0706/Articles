@@ -221,7 +221,7 @@ async function build() {
           assetBase: locale.code === "en" ? "../../" : "../",
           assetVersion,
           pageBase: basePath || "/",
-          homeHref: locale.code === "en" ? basePath + "/en" : basePath + "/" || "/",
+          homeHref: locale.code === "en" ? (basePath || "") + "/en" : (basePath || "") + "/",
           i18n: locale.i18n,
           locale: locale.code
         },
