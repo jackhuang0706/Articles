@@ -27,6 +27,7 @@ jobs:
       - name: Build static site
         env:
           BASE_PATH: /Articles
+          BUILD_VERSION: ${{ github.sha }}
         run: npm run build
       
       - name: Deploy to gh-pages
@@ -35,3 +36,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           cname: false
+          force_orphan: true

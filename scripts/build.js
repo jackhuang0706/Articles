@@ -164,6 +164,7 @@ async function build() {
   const assetsDir = path.join(rootDir, "assets");
   const indexTpl = path.join(rootDir, "index.ejs");
   const articleTpl = path.join(rootDir, "article.ejs");
+  const assetVersion = process.env.BUILD_VERSION || String(Date.now());
   // Clean dist to remove stale outputs before rebuilding
   try { await fsp.rm(distDir, { recursive: true, force: true }); } catch (_) {}
   await ensureDir(distDir);
@@ -184,6 +185,7 @@ async function build() {
       {
         articles: list,
         assetBase: indexAssetBase,
+        assetVersion,
         pageBase,
         pageExt,
         i18n: locale.i18n,
@@ -212,6 +214,7 @@ async function build() {
           articleHtml,
           toc,
           assetBase: locale.code === "en" ? "../../" : "../",
+          assetVersion,
           pageBase: basePath + "/",
           homeHref: locale.code === "en" ? basePath + "/en" : basePath + "/",
           i18n: locale.i18n,
