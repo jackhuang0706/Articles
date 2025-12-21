@@ -14,18 +14,28 @@ function escapeAttr(value) {
     .replace(/"/g, "&quot;");
 }
 
+function cleanHeadingText(text) {
+  return String(text)
+    .replace(/\\/g, "")
+    .replace(/\n/g, "")
+    .replace(/[\r\t]/g, " ")
+    .replace(/<[^>]*>/g, "")
+    .trim();
+}
+
 const renderer = {
+  // Use token-style heading to match build.js behavior and keep IDs consistent
   heading(token) {
-    // 生成 slug ID
-    const id = token.text
+    const cleanText = cleanHeadingText(token.text);
+    const id = cleanText
       .toLowerCase()
-      .replace(/<[^>]*>/g, '') // 移除 HTML 標籤
-      .replace(/[^\w\u4e00-\u9fa5\s-]/g, '') // 保留字母、數字、中文、空格、連字號
+      .replace(/<[^>]*>/g, '')
+      .replace(/[^\w\u4e00-\u9fa5\s-]/g, '')
       .trim()
-      .replace(/\s+/g, '-') // 空格轉連字號
-      .replace(/-+/g, '-') // 多個連字號合併
-      .replace(/^-|-$/g, ''); // 移除首尾連字號
-    return `<h${token.depth} id="${id}">${token.text}</h${token.depth}>`;
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+    return `<h${token.depth} id="${id}">${cleanText}</h${token.depth}>`;
   },
   code(codeArg, infoString = "") {
     let source = "";
@@ -74,6 +84,7 @@ marked.use(markedKatex({ throwOnError: false }));
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const assetVersion = process.env.BUILD_VERSION || String(Date.now());
 
 const locales = [
   { code: "zh", prefix: "", i18n: { heroTitle: "文章列表", back: "← 返回列表", toc: "目錄" } },
@@ -162,6 +173,7 @@ async function renderIndex(localeCode, req, res) {
       {
         articles: list,
         assetBase: "/",
+        assetVersion,
         pageBase,
         pageExt,
         i18n: locale.i18n,
@@ -181,17 +193,16 @@ function extractTOC(content) {
   const tokens = marked.lexer(content);
   tokens.forEach((token) => {
     if (token.type === "heading" && token.depth >= 2 && token.depth <= 3) {
-      const text = token.text;
-      // 使用與 marked 相同的 slug 生成邏輯
-      const id = text
+      const cleanText = cleanHeadingText(token.text);
+      const id = cleanText
         .toLowerCase()
-        .replace(/<[^>]*>/g, '') // 移除 HTML 標籤
-        .replace(/[^\w\u4e00-\u9fa5\s-]/g, '') // 保留字母、數字、中文、空格、連字號
+        .replace(/<[^>]*>/g, '')
+        .replace(/[^\w\u4e00-\u9fa5\s-]/g, '')
         .trim()
-        .replace(/\s+/g, '-') // 空格轉連字號
-        .replace(/-+/g, '-') // 多個連字號合併為一個
-        .replace(/^-|-$/g, ''); // 移除首尾連字號
-      toc.push({ level: token.depth, text, id });
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+      toc.push({ level: token.depth, text: cleanText, id });
     }
   });
   return toc;
@@ -219,6 +230,7 @@ async function renderArticle(localeCode, req, res) {
         articleHtml,
         toc,
         assetBase: "/",
+        assetVersion,
         pageBase: base,
         homeHref: base,
         i18n: locale.i18n,
