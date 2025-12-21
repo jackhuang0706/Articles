@@ -10,7 +10,10 @@
         <% }) %>
       <% } %>
     </p>
-    <div class="article-body"><%- articleHtml %></div>
+    <!-- NO_JEKYLL_PROCESSING -->
+    <div class="article-body">
+<%- articleHtml %>
+    </div>
   </article>
   <% if (typeof toc !== 'undefined' && toc.length > 0) { %>
   <aside class="toc">

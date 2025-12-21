@@ -209,7 +209,9 @@ async function build() {
         .replace(/<p>\s*\\?n\s*<\/p>/g, '') // 移除包含 \n 和空白的段落
         .replace(/>\s*\\?n\s*</g, '><') // 移除標籤間的 n 或 \n
         .replace(/(<\/h[1-6]>)\s*<p>\s*\\?n\s*<\/p>/g, '$1') // 移除標題後緊接的 n 段落
-        .replace(/>[\s]*\\n[\s]*</g, '><'); // 最後一次全清理
+        .replace(/>[\s]*\\n[\s]*</g, '><') // 最後一次全清理
+        // 在標題標籤和段落標籤之間添加換行，分離塊元素
+        .replace(/(<\/h[1-6]>)(<(?:p|ul|ol|blockquote|hr|table))/g, '$1\n$2');
       const html = await ejs.renderFile(
         articleTpl,
         {
