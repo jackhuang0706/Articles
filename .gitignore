@@ -20,5 +20,5 @@ Thumbs.db
 .env.local
 .env.*.local
 
-# Build output (optional: uncomment if you want to exclude static builds)
-# dist/
+# Build output (本地構建輸出，不上傳；GitHub Actions 會自動生成)
+dist/
