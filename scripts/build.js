@@ -199,13 +199,12 @@ async function build() {
     for (const article of list) {
       const toc = extractTOC(article.content);
       let articleHtml = marked.parse(article.content, { mangle: false, langPrefix: "hljs language-" });
-      // 移除所有 \n 變體與多餘換行
+      // 移除所有 \n 字符（字面的反斜線+n 以及實際的換行）
       articleHtml = articleHtml
-        .replace(/\\n/g, '')  // 字面的 \n（反斜線+n）
-        .replace(/<h([1-6])\s+id="([^"]*)">\s*\\n/g, '<h$1 id="$2">') // h標籤後的 \n
-        .replace(/\\n/g, '') // 再清理一遍以防
-        .replace(/>\s*\n\s*</g, '><') // 移除標籤間的換行符
-        .replace(/>\s+</g, '> <'); // 標籤間保留單個空格
+        .replace(/\\n/g, '')  // 移除字面的 \n（反斜線+n）
+        .replace(/(<\/h[1-6]>)\s*\\?n/g, '$1') // 移除 h 標籤後的 \n
+        .replace(/(<\/h[1-6]>)(\r?\n)+(<p|<ul|<ol|<h|<div|<table)/g, '$1$3') // 移除標籤間的多餘換行
+        .replace(/>\s*\n\s*</g, '><'); // 移除標籤間的換行符
       const html = await ejs.renderFile(
         articleTpl,
         {
