@@ -427,7 +427,12 @@ const base = pathname
 
 ## 部署到 GitHub Pages
 
-### 方法一：使用 GitHub Actions（推薦）
+### 使用 gh-pages 分支（當前配置）
+
+本專案採用 **源碼與靜態文件分離** 的部署方式：
+- **main 分支**：完整源碼（.ejs、server.js、scripts/、content/ 等）
+- **gh-pages 分支**：構建後的靜態文件（由 GitHub Actions 自動生成）
+- **dist/ 目錄**：本地測試用，不推送到 GitHub
 
 #### 1. 建立 GitHub Repository
 ```bash
@@ -498,8 +503,24 @@ jobs:
 
 #### 3. 啟用 GitHub Pages
 1. 進入 Repository → **Settings** → **Pages**
-2. **Source** 選擇：**GitHub Actions**
-3. 推送程式碼後，Actions 會自動構建並部署
+2. **Source** 選擇：**Deploy from a branch**
+3. **Branch** 選擇：**gh-pages** → **/ (root)**
+4. **Save**
+5. 推送程式碼後，Actions 會自動構建並推送到 gh-pages 分支
+
+#### 4. 日常更新流程
+```bash
+# 修改源碼或內容
+git add .
+git commit -m "更新內容"
+git push
+
+# GitHub Actions 會自動：
+# 1. 檢測到 main 分支推送
+# 2. 執行 npm ci && npm run build
+# 3. 將 dist/ 內容推送到 gh-pages 分支
+# 4. GitHub Pages 自動部署
+```
 
 ### 方法二：手動部署
 

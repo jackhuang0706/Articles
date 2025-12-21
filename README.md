@@ -24,11 +24,11 @@ npm start
 # open http://localhost:3000/
 ```
 
-- **Build static HTML:**
+- **Build static HTML (local preview):**
 
 ```bash
 npm run build
-# outputs to ./dist
+# outputs to ./dist (本地測試用，不會推送到 GitHub)
 ```
 
 -- **Theme toggle:**
@@ -36,7 +36,7 @@ npm run build
   - Shows moon in light mode and sun in dark mode
   - Works on both list and article pages
 
-- **Preview static build (choose one):**
+- **Preview static build locally (choose one):**
 
 ```bash
 # Python
@@ -46,6 +46,20 @@ npx serve dist
 # or http-server
 npx http-server dist -p 8000
 # then open http://localhost:8000/
+```
+
+- **部署到 GitHub Pages:**
+
+```bash
+# 修改源碼後，推送到 main 分支
+git add .
+git commit -m "更新內容"
+git push
+
+# GitHub Actions 會自動：
+# 1. 構建靜態文件
+# 2. 推送到 gh-pages 分支
+# 3. 部署到 https://YOUR_USERNAME.github.io/Articles/
 ```
 
 ## Project Structure
@@ -90,6 +104,7 @@ npx http-server dist -p 8000
 - **Restart dev server** when you change [server.js](server.js).
 - **Rebuild** when you change templates ([index.ejs](index.ejs), [article.ejs](article.ejs)), styles/scripts ([assets](assets)), or Markdown ([content](content)).
 - Dependencies: `express`, `ejs`, `marked`, `gray-matter`, `highlight.js`, `marked-katex-extension`.
+- **dist/ 目錄**：本地構建輸出，不會推送到 main 分支（已在 .gitignore 中排除）。GitHub Actions 會自動構建並推送到 gh-pages 分支。
 
 ## Localization in EJS
 
