@@ -158,11 +158,14 @@ async function build() {
   await ensureDir(distDir);
 
   const articlesByLocale = await loadArticles(contentDir);
+  
+  // 支援 GitHub Pages 子路徑部署（例如 /Articles/）
+  const basePath = process.env.BASE_PATH || "";
 
   for (const locale of locales) {
     const list = articlesByLocale[locale.code] || [];
     const indexAssetBase = locale.code === "en" ? "../" : "";
-    const pageBase = "/";
+    const pageBase = basePath + "/";
     const pageExt = locale.code === "en" ? "/en" : "";
 
     const indexHtml = await ejs.renderFile(
@@ -192,8 +195,8 @@ async function build() {
           articleHtml,
           toc,
           assetBase: locale.code === "en" ? "../../" : "../",
-          pageBase: "/",
-          homeHref: locale.code === "en" ? "/en" : "/",
+          pageBase: basePath + "/",
+          homeHref: locale.code === "en" ? basePath + "/en" : basePath + "/",
           i18n: locale.i18n,
           locale: locale.code
         },
