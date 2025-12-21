@@ -25,7 +25,7 @@ const renderer = {
       .replace(/\\s+/g, '-') // 空格轉連字號
       .replace(/-+/g, '-') // 多個連字號合併
       .replace(/^-|-$/g, ''); // 移除首尾連字號
-    return `<h${token.depth} id="${id}">${token.text}</h${token.depth}>\\n`;
+    return `<h${token.depth} id="${id}">${token.text}</h${token.depth}>`;
   },
   code(codeArg, infoString = "") {
     let source = "";
