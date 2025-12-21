@@ -201,17 +201,8 @@ async function build() {
     for (const article of list) {
       const toc = extractTOC(article.content);
       let articleHtml = marked.parse(article.content, { mangle: false, langPrefix: "hljs language-" });
-      // 徹底移除所有形式的 \n 字符（包括反斜線+n 和中間的空白）
-      articleHtml = articleHtml
-        .replace(/\\n/g, '')  // 移除字面的 \n（反斜線+n）
-        .replace(/\\?\s*n(?=<|$)/g, '') // 移除單獨或前面有反斜線的 n
-        .replace(/<p>[\s\\]*n[\s\\]*<\/p>/g, '') // 移除包含 n 的空段落
-        .replace(/<p>\s*\\?n\s*<\/p>/g, '') // 移除包含 \n 和空白的段落
-        .replace(/>\s*\\?n\s*</g, '><') // 移除標籤間的 n 或 \n
-        .replace(/(<\/h[1-6]>)\s*<p>\s*\\?n\s*<\/p>/g, '$1') // 移除標題後緊接的 n 段落
-        .replace(/>[\s]*\\n[\s]*</g, '><') // 最後一次全清理
-        // 在標題標籤和段落標籤之間添加換行，分離塊元素
-        .replace(/(<\/h[1-6]>)(<(?:p|ul|ol|blockquote|hr|table))/g, '$1\n$2');
+      // 只移除字面的 \n 字符（反斜線+n），避免破坏KaTeX等内容
+      articleHtml = articleHtml.replace(/\\n/g, '');
       const html = await ejs.renderFile(
         articleTpl,
         {
