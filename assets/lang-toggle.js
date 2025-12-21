@@ -2,14 +2,21 @@
   const select = document.getElementById("lang-select");
   if (!select) return;
 
+  const basePath = window.__PAGE_BASE__ || "";
   const normalize = (path) => path.replace(/\/+/g, "/");
 
   const toLocalePath = (targetLocale) => {
     const { pathname, search, hash } = window.location;
-    const isIndexZh = pathname === "/";
-    const isIndexEn = pathname === "/en" || pathname === "/en/";
+    // 移除 basePath 來取得相對路徑
+    let relativePath = pathname;
+    if (basePath && pathname.startsWith(basePath)) {
+      relativePath = pathname.slice(basePath.length) || "/";
+    }
+    
+    const isIndexZh = relativePath === "/";
+    const isIndexEn = relativePath === "/en" || relativePath === "/en/";
     // Remove leading '/en' and trailing '/en' to get article base
-    const base = pathname
+    const base = relativePath
       .replace(/^(\/en)(?=\/|$)/, "")
       .replace(/(\/en)(?=\/|$)/, "");
     const rest = normalize(base);
@@ -29,7 +36,7 @@
         next = rest;
       }
     }
-    return `${next}${search || ""}${hash || ""}`;
+    return `${basePath}${next}${search || ""}${hash || ""}`;
   };
 
   select.addEventListener("change", () => {
