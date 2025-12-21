@@ -199,7 +199,8 @@ function renderArticle(localeCode, req, res) {
   }
   try {
     const toc = extractTOC(article.content);
-    const html = marked.parse(article.content, { mangle: false, langPrefix: "hljs language-" });
+    const html = marked.parse(article.content, { mangle: false, langPrefix: "hljs language-" })
+      .replace(/\\n/g, ''); // 移除字面顯示的 \n
     res.render("article", {
       article,
       articleHtml: html,

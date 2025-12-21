@@ -20,9 +20,9 @@ const renderer = {
     const id = token.text
       .toLowerCase()
       .replace(/<[^>]*>/g, '') // 移除 HTML 標籤
-      .replace(/[^\\w\\u4e00-\\u9fa5\\s-]/g, '') // 保留字母、數字、中文、空格、連字號
+      .replace(/[^\w\u4e00-\u9fa5\s-]/g, '') // 保留字母、數字、中文、空格、連字號
       .trim()
-      .replace(/\\s+/g, '-') // 空格轉連字號
+      .replace(/\s+/g, '-') // 空格轉連字號
       .replace(/-+/g, '-') // 多個連字號合併
       .replace(/^-|-$/g, ''); // 移除首尾連字號
     return `<h${token.depth} id="${id}">${token.text}</h${token.depth}>`;
@@ -187,7 +187,8 @@ async function build() {
 
     for (const article of list) {
       const toc = extractTOC(article.content);
-      const articleHtml = marked.parse(article.content, { mangle: false, langPrefix: "hljs language-" });
+      const articleHtml = marked.parse(article.content, { mangle: false, langPrefix: "hljs language-" })
+        .replace(/\\n/g, ''); // 移除字面顯示的 \n
       const html = await ejs.renderFile(
         articleTpl,
         {
