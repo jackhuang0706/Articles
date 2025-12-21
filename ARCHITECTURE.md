@@ -7,8 +7,9 @@
   - [多語言支援](#多語言支援)
   - [程式碼分頁顯示](#程式碼分頁顯示)
 - [專案結構](#專案結構)
-- [開發過程遇到的問題](#開發過程遇到的問題)
 - [部署到 GitHub Pages](#部署到-github-pages)
+- [資產版本控制](#資產版本控制)
+- [問題排除](#問題排除)
 
 ---
 
@@ -619,3 +620,50 @@ npx nodemon server.js
 
 **最後更新**：2025-12-20  
 **維護者**：請根據需要更新此文件
+
+---
+
+## 資產版本控制
+
+為了防止瀏覽器快取舊版本的 CSS 和 JavaScript，專案實作了資產版本控制。
+
+### 實作方式
+
+1. **在構建時生成版本號**
+```javascript
+// scripts/build.js
+const assetVersion = process.env.BUILD_VERSION || String(Date.now());
+```
+
+2. **在模板中附加版本參數**
+```html
+<link rel="stylesheet" href="<%= assetBase %>assets/style.css?v=<%= assetVersion %>" />
+<script src="<%= assetBase %>assets/theme-toggle.js?v=<%= assetVersion %>"></script>
+```
+
+3. **GitHub Actions 傳遞 commit SHA**
+```yaml
+env:
+  BUILD_VERSION: ${{ github.sha }}
+```
+
+### 效果
+
+- 每次部署後，所有資產 URL 都會更新為新的版本號
+- 瀏覽器會強制重新載入資產，確保使用者看到最新版本
+- 本地開發使用時間戳，確保每次重建都會更新
+
+---
+
+## 問題排除
+
+開發和部署過程中遇到問題？請查看 [TROUBLESHOOTING.md](TROUBLESHOOTING.md) 獲取詳細的問題排除指南，包括：
+
+- GitHub Pages 部署問題（`\n` 字符、ID 簡化、TOC 導航失效）
+- 本地開發環境問題
+- Jekyll 處理相關問題
+- 調試技巧和最佳實踐
+
+---
+
+**注意：本專案現已改用 GitHub Actions 官方部署方式（`actions/deploy-pages@v4`），請在 Settings → Pages 中將 Source 設為 "GitHub Actions"，以完全繞過 Jekyll 處理。**

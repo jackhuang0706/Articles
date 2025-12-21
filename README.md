@@ -57,10 +57,14 @@ git commit -m "更新內容"
 git push
 
 # GitHub Actions 會自動：
-# 1. 構建靜態文件
-# 2. 推送到 gh-pages 分支
+# 1. 構建靜態文件（包含 BASE_PATH 和版本控制）
+# 2. 使用 actions/deploy-pages 直接部署（繞過 Jekyll）
 # 3. 部署到 https://YOUR_USERNAME.github.io/Articles/
 ```
+
+**重要設置：**
+- 確保在 GitHub 倉庫的 Settings → Pages 中，Source 設為 **"GitHub Actions"**
+- 不要使用 "Deploy from a branch"，以避免 Jekyll 處理 HTML
 
 ## Project Structure
 
@@ -104,7 +108,17 @@ git push
 - **Restart dev server** when you change [server.js](server.js).
 - **Rebuild** when you change templates ([index.ejs](index.ejs), [article.ejs](article.ejs)), styles/scripts ([assets](assets)), or Markdown ([content](content)).
 - Dependencies: `express`, `ejs`, `marked`, `gray-matter`, `highlight.js`, `marked-katex-extension`.
-- **dist/ 目錄**：本地構建輸出，不會推送到 main 分支（已在 .gitignore 中排除）。GitHub Actions 會自動構建並推送到 gh-pages 分支。
+- **dist/ 目錄**：本地構建輸出，不會推送到 main 分支（已在 .gitignore 中排除）。GitHub Actions 會自動構建並部署。
+
+## Troubleshooting
+
+遇到問題？請查看 [TROUBLESHOOTING.md](TROUBLESHOOTING.md) 了解常見問題及解決方案。
+
+## Documentation
+
+- [README.md](README.md) - 快速開始指南（本文件）
+- [ARCHITECTURE.md](ARCHITECTURE.md) - 詳細架構說明和功能原理
+- [TROUBLESHOOTING.md](TROUBLESHOOTING.md) - 問題排除與解決方案
 
 ## Localization in EJS
 
