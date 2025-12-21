@@ -24,7 +24,8 @@
     
     // Remove trailing '/en' to get article base path
     // For /article-slug/en -> /article-slug
-    const articleBase = relativePath.replace(/(\/en)$/, "");
+    // 去除結尾的 /en 與可選的尾斜線，確保 /slug/en 與 /slug/en/ 都能正確回到 /slug
+    const articleBase = relativePath.replace(/(\/en)\/?$/, "");
     const rest = normalize(articleBase === "" ? "/" : articleBase);
 
     let next;
