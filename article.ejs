@@ -51,8 +51,7 @@
     <main class="layout layout--with-toc">
       <article class="reader">
         <a class="back-link" href="<%= homeHref %>"><%= i18n.back %></a>
-        <h1><%= article.title %></h1>
-        <p class="date">
+        <h1><%= article.title %></h1><p class="date">
           <%= article.date %>
           <% if ((article.tags || []).length) { %>
             ·
