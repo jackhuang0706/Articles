@@ -20,66 +20,30 @@
 </head>
 <body>
   <div class="page">
-    <header class="hero">
-      <div class="hero__controls">
-        <div class="theme-toggle">
-          <button type="button" id="theme-toggle" aria-label="切換主題">
-            <span class="theme-toggle__track">
-              <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="false">
-                <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" fill="none" />
-                <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" />
-              </svg>
-              <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M21 12.79A9 9 0 0 1 11.21 3 7 7 0 1 0 21 12.79Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-              <span class="theme-toggle__thumb"></span>
-            </span>
-          </button>
-        </div>
-        <div class="lang-switch">
-          <select id="lang-select" aria-label="Language">
-            <option value="zh" <%= (locale === 'zh') ? 'selected' : '' %>>中文</option>
-            <option value="en" <%= (locale === 'en') ? 'selected' : '' %>>English</option>
-          </select>
-        </div>
-      </div>
-      <div class="hero__text hero__text--clickable" data-home="<%= homeHref %>" role="button" tabindex="0" aria-label="<%= i18n.back %>">
-        <h1><%= i18n.heroTitle %></h1>
-      </div>
-    </header>
+    <%- await include('partials/hero-article', { i18n, locale, homeHref }) %>
 
-    <main class="layout layout--with-toc">
-      <article class="reader">
-        <a class="back-link" href="<%= homeHref %>"><%= i18n.back %></a>
-        <h1><%= article.title %></h1><p class="date">
-          <%= article.date %>
-          <% if ((article.tags || []).length) { %>
-            ·
-            <% (article.tags || []).forEach(function(tag, i) { %>
-              <span class="tag"><%= tag %></span><% if (i < article.tags.length - 1) { %> <% } %>
-            <% }) %>
-          <% } %>
-        </p>
-        <div class="article-body"><%- articleHtml %></div>
-      </article>
-      <% if (typeof toc !== 'undefined' && toc.length > 0) { %>
-      <aside class="toc">
-        <div class="toc__inner">
-          <h3 class="toc__title"><%= i18n.toc %></h3>
-          <nav class="toc__nav">
-            <% toc.forEach(function(item) { %>
-              <a href="#<%= item.id %>" class="toc__link toc__link--level-<%= item.level %>"><%= item.text %></a>
-            <% }) %>
-          </nav>
-        </div>
-      </aside>
-      <% } %>
-    </main>
+    <%- await include('partials/article-content', { article, articleHtml, toc, i18n, homeHref }) %>
 
-    <footer class="footer">
-      <p>&copy; 2025. All rights reserved.</p>
-    </footer>
+    <%- await include('partials/footer') %>
   </div>
+  <script>
+    // Remove stray "\n" text nodes between block elements inside article-body
+    (function() {
+      var body = document.querySelector('.article-body');
+      if (!body) return;
+      var walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, null);
+      var nodes = [];
+      while (walker.nextNode()) {
+        var t = walker.currentNode;
+        if (t && typeof t.nodeValue === 'string' && t.nodeValue.trim() === '\\n') {
+          nodes.push(t);
+        }
+      }
+      nodes.forEach(function(n) {
+        if (n.parentNode) n.parentNode.removeChild(n);
+      });
+    })();
+  </script>
   <script>
     (() => {
       const el = document.querySelector(".hero__text--clickable");

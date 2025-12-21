@@ -1,0 +1,27 @@
+<main class="layout layout--with-toc">
+  <article class="reader">
+    <a class="back-link" href="<%= homeHref %>"><%= i18n.back %></a>
+    <h1><%= article.title %></h1><p class="date">
+      <%= article.date %>
+      <% if ((article.tags || []).length) { %>
+        ·
+        <% (article.tags || []).forEach(function(tag, i) { %>
+          <span class="tag"><%= tag %></span><% if (i < article.tags.length - 1) { %> <% } %>
+        <% }) %>
+      <% } %>
+    </p>
+    <div class="article-body"><%- articleHtml %></div>
+  </article>
+  <% if (typeof toc !== 'undefined' && toc.length > 0) { %>
+  <aside class="toc">
+    <div class="toc__inner">
+      <h3 class="toc__title"><%= i18n.toc %></h3>
+      <nav class="toc__nav">
+        <% toc.forEach(function(item) { %>
+          <a href="#<%= item.id %>" class="toc__link toc__link--level-<%= item.level %>"><%= item.text %></a>
+        <% }) %>
+      </nav>
+    </div>
+  </aside>
+  <% } %>
+</main>

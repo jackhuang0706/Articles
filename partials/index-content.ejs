@@ -1,0 +1,20 @@
+<main class="layout">
+  <section class="sidebar" aria-label="文章列表">
+    <ul class="article-list">
+      <% (list || []).forEach(function(article) { %>
+        <li class="article-item">
+          <a class="article-link" href="<%= pageBase %><%= article.id %><%= typeof pageExt !== 'undefined' ? pageExt : '' %>">
+            <h3><%= article.title %></h3>
+            <p class="muted"><%= article.summary %></p>
+            <div class="article-meta">
+              <span><%= article.date %></span>
+              <% (article.tags || []).forEach(function(tag) { %>
+                <span class="tag"><%= tag %></span>
+              <% }) %>
+            </div>
+          </a>
+        </li>
+      <% }) %>
+    </ul>
+  </section>
+</main>

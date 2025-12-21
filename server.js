@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
+const ejs = require("ejs");
 const { marked } = require("marked");
 const matter = require("gray-matter");
 const hljs = require("highlight.js");
@@ -133,10 +134,8 @@ loadArticles().then((loaded) => {
   console.log(`Loaded articles per locale -> ${counts}`);
 }).catch((err) => {
   console.error("Failed to load articles:", err);
+  process.exit(1);
 });
-
-app.set("view engine", "ejs");
-app.set("views", __dirname);
 
 app.use("/assets", express.static(path.join(__dirname, "assets")));
 app.use("/content", express.static(path.join(__dirname, "content")));
@@ -151,20 +150,30 @@ app.use((req, res, next) => {
   next();
 });
 
-function renderIndex(localeCode, req, res) {
-  const locale = localeMap.get(localeCode) || localeMap.get("zh");
-  const list = articlesByLocale[locale.code] || [];
-  // For English, we link as /:id/en instead of /en/:id
-  const pageBase = "/";
-  const pageExt = locale.code === "en" ? "/en" : "";
-  res.render("index", {
-    articles: list,
-    assetBase: "/",
-    pageBase,
-    pageExt,
-    i18n: locale.i18n,
-    locale: locale.code
-  });
+async function renderIndex(localeCode, req, res) {
+  try {
+    const locale = localeMap.get(localeCode) || localeMap.get("zh");
+    const list = articlesByLocale[locale.code] || [];
+    // For English, we link as /:id/en instead of /en/:id
+    const pageBase = "/";
+    const pageExt = locale.code === "en" ? "/en" : "";
+    const html = await ejs.renderFile(
+      path.join(__dirname, "index.ejs"),
+      {
+        articles: list,
+        assetBase: "/",
+        pageBase,
+        pageExt,
+        i18n: locale.i18n,
+        locale: locale.code
+      },
+      { async: true }
+    );
+    res.send(html);
+  } catch (err) {
+    console.error("Error rendering index:", err);
+    res.status(500).send("Failed to render index");
+  }
 }
 
 function extractTOC(content) {
@@ -188,32 +197,39 @@ function extractTOC(content) {
   return toc;
 }
 
-function renderArticle(localeCode, req, res) {
-  const locale = localeMap.get(localeCode) || localeMap.get("zh");
-  const list = articlesByLocale[locale.code] || [];
-  const base = locale.prefix ? `/${locale.prefix}/` : "/";
-  const id = req.params.id;
-  const article = list.find((a) => a.id === id);
-  if (!article) {
-    return res.status(404).send("Article not found");
-  }
+async function renderArticle(localeCode, req, res) {
   try {
+    const locale = localeMap.get(localeCode) || localeMap.get("zh");
+    const list = articlesByLocale[locale.code] || [];
+    const base = locale.prefix ? `/${locale.prefix}/` : "/";
+    const id = req.params.id;
+    const article = list.find((a) => a.id === id);
+    if (!article) {
+      return res.status(404).send("Article not found");
+    }
+
     const toc = extractTOC(article.content);
-    const html = marked.parse(article.content, { mangle: false, langPrefix: "hljs language-" })
+    const articleHtml = marked.parse(article.content, { mangle: false, langPrefix: "hljs language-" })
       .replace(/\\n/g, ''); // 移除字面顯示的 \n
-    res.render("article", {
-      article,
-      articleHtml: html,
-      toc,
-      assetBase: "/",
-      pageBase: base,
-      homeHref: base,
-      i18n: locale.i18n,
-      locale: locale.code
-    });
+
+    const html = await ejs.renderFile(
+      path.join(__dirname, "article.ejs"),
+      {
+        article,
+        articleHtml,
+        toc,
+        assetBase: "/",
+        pageBase: base,
+        homeHref: base,
+        i18n: locale.i18n,
+        locale: locale.code
+      },
+      { async: true }
+    );
+    res.send(html);
   } catch (err) {
-    console.error(err);
-    res.status(500).send("Failed to load article");
+    console.error("Error rendering article:", err);
+    res.status(500).send("Failed to render article");
   }
 }
 
@@ -226,6 +242,9 @@ app.get("/en", (req, res) => renderIndex("en", req, res));
 // Article routes (specific before catch-all)
 // English articles as /:id/en
 app.get("/:id/en", (req, res) => renderArticle("en", req, res));
+
+// Compatibility: redirect /en/:id to /:id/en
+app.get("/en/:id", (req, res) => res.redirect(301, `/${req.params.id}/en`));
 
 // Default catch-all for zh (Chinese is root)
 app.get("/:id", (req, res) => renderArticle("zh", req, res));
