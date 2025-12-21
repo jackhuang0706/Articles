@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LeetCode Weekly Contest 480 | Articles</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../assets/highlight-github.min.css" />
+  <link rel="stylesheet" href="../../assets/style.css" />
+  <script src="../../assets/code-tabs.js" defer></script>
+  <script src="../../assets/theme-toggle.js" defer></script>
+  <script src="../../assets/lang-toggle.js" defer></script>
+  <script src="../../assets/toc.js" defer></script>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero__controls">
+        <div class="theme-toggle">
+          <button type="button" id="theme-toggle" aria-label="切換主題">
+            <span class="theme-toggle__track">
+              <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="false">
+                <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" fill="none" />
+                <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" />
+              </svg>
+              <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M21 12.79A9 9 0 0 1 11.21 3 7 7 0 1 0 21 12.79Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span class="theme-toggle__thumb"></span>
+            </span>
+          </button>
+        </div>
+        <div class="lang-switch">
+          <select id="lang-select" aria-label="Language">
+            <option value="zh" >中文</option>
+            <option value="en" selected>English</option>
+          </select>
+        </div>
+      </div>
+      <div class="hero__text hero__text--clickable" data-home="/en" role="button" tabindex="0" aria-label="← Back to list">
+        <h1>Articles</h1>
+      </div>
+    </header>
+
+    <main class="layout layout--with-toc">
+      <article class="reader">
+        <a class="back-link" href="/en">← Back to list</a>
+        <h1>LeetCode Weekly Contest 480</h1>
+        <p class="date">
+          2025-12-20
+          
+            ·
+            
+              <span class="tag">Algorithm</span> 
+            
+              <span class="tag">LeetCode</span> 
+            
+              <span class="tag">Segment Tree</span>
+            
+          
+        </p>
+        <div class="article-body"><p>This is the first time I got AK in LeetCode Weekly Contest, and I felt accomplished with that. As a result, I&#39;d like to record it as my first article. </p>
+<ul>
+<li><strong>Rank: 598 / 30007</strong></li>
+<li><strong>Rating: 1752 -&gt; 1824 (+72)</strong></li>
+</ul>
+<h3 id="asueffeeeeweeauaueees">Absolute Difference Between Maximum and Minimum K Elements</h3>\n<p>First sort <code>nums</code>, then simply find the difference between the sum of the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mrow><mi>t</mi><mi>h</mi></mrow></msub></mrow><annotation encoding="application/x-tex">k_{th}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0315em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">h</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> largest elements and the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>k</mi><mrow><mi>t</mi><mi>h</mi></mrow></msub></mrow><annotation encoding="application/x-tex">k_{th}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0315em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">h</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> smallest elements.</p>
+<pre><code class="hljs language-cpp"><span class="hljs-comment">// 0 ms, Beats 100 %</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">absDifference</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> k)</span> </span>{
+        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>(), large = <span class="hljs-number">0</span>, small = <span class="hljs-number">0</span>;
+        <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; k; i++) {
+            small += nums[i];
+            large += nums[n - i - <span class="hljs-number">1</span>];
+        }
+        <span class="hljs-keyword">return</span> large - small;
+    }
+};</code></pre><h3 id="eesewswsaeweu">Reverse Words With Same Vowel Count</h3>\n<p>We can solve the problem by Brute Force. What&#39;s worth mentioned is that I <strong>append a space character to <code>s</code></strong> first so that the last word can be processed without adding similar code outside the <code>for</code> loop. But after the loop we have to delete that space. </p>
+<pre><code class="hljs language-cpp"><span class="hljs-comment">// 19 ms, Beats 87.99 %</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">string <span class="hljs-title">reverseWords</span><span class="hljs-params">(string s)</span> </span>{
+        s += <span class="hljs-string">&#x27; &#x27;</span>;
+        <span class="hljs-type">int</span> n = s.<span class="hljs-built_in">length</span>();
+        <span class="hljs-type">int</span> check = <span class="hljs-number">-1</span>, past = <span class="hljs-number">-1</span>, cnt = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+            <span class="hljs-keyword">if</span> (s[i] == <span class="hljs-string">&#x27; &#x27;</span>) {
+                <span class="hljs-keyword">if</span> (check == <span class="hljs-number">-1</span>) {
+                    check = cnt;
+                }
+                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cnt == check) {
+                    <span class="hljs-built_in">reverse</span>(s.<span class="hljs-built_in">begin</span>() + past + <span class="hljs-number">1</span>, s.<span class="hljs-built_in">begin</span>() + i);
+                }
+                past = i, cnt = <span class="hljs-number">0</span>;
+                <span class="hljs-keyword">continue</span>;
+            }
+            <span class="hljs-keyword">if</span> (s[i] == <span class="hljs-string">&#x27;a&#x27;</span> || s[i] == <span class="hljs-string">&#x27;e&#x27;</span> || s[i] == <span class="hljs-string">&#x27;i&#x27;</span> || s[i] == <span class="hljs-string">&#x27;o&#x27;</span> || s[i] == <span class="hljs-string">&#x27;u&#x27;</span>) ++cnt;
+        }
+        s.<span class="hljs-built_in">pop_back</span>();
+        <span class="hljs-keyword">return</span> s;
+    }
+};</code></pre><h3 id="uesaaeuaaa">Minimum Moves to Balance Circular Array</h3>\n<p>In this problem, we have to move some numbers to make all elements in <code>balance</code> is non-negative. First step is to check if the only negative number is exist. ( if it is exist, find its index in <code>balance</code> ) If there&#39;s no negative number in <code>balance</code>, the answer is obviously <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> because we don&#39;t need to move any number. When we move the number, we&#39;d like to <strong>get number from the element that is closer to the negative number</strong>. (based on Greedy algorithm) Considered that the farthest distance in a circular array whose length is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">n/2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mord">/2</span></span></span></span>, we can use <code>for</code> loop from <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">n/2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mord">/2</span></span></span></span> to get numbers. There are always two elements which is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>i</mi><mrow><mi>t</mi><mi>h</mi></mrow></msub></mrow><annotation encoding="application/x-tex">i_{th}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8095em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">h</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> (the range of <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> is in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo fence="true">[</mo><mn>1</mn><mo separator="true">,</mo><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn><mo fence="true">]</mo></mrow><annotation encoding="application/x-tex">\left[1, n/2 \right]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mord">/2</span><span class="mclose delimcenter" style="top:0em;">]</span></span></span></span></span> ) farther from the index of the negative number. But there&#39;s an exception <strong>when <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> is even and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>=</mo><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">i = n/2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mord">/2</span></span></span></span></strong>, there will be <strong>only ONE element</strong>. We should avoid calculating twice when faced the special case.</p>
+<pre><code class="hljs language-cpp"><span class="hljs-comment">// 0 ms, Beats 100 %</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-type">long</span> <span class="hljs-type">long</span> <span class="hljs-title">minMoves</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; balance)</span> </span>{
+        <span class="hljs-type">int</span> n = balance.<span class="hljs-built_in">size</span>(), minus = <span class="hljs-number">-1</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+            <span class="hljs-keyword">if</span> (balance[i] &lt; <span class="hljs-number">0</span>) {
+                minus = i;
+                <span class="hljs-keyword">break</span>;
+            }
+        }
+        <span class="hljs-keyword">if</span> (minus == <span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        <span class="hljs-type">int</span> steps = -balance[minus];
+        <span class="hljs-type">long</span> <span class="hljs-type">long</span> res = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n&gt;&gt;<span class="hljs-number">1</span> ; i++) {
+            <span class="hljs-type">int</span> curr = <span class="hljs-built_in">min</span>(steps, balance[(minus + i) % n]);
+            res += <span class="hljs-number">1LL</span> * curr * i;
+            steps -= curr;
+            <span class="hljs-keyword">if</span> (i == n &gt;&gt; <span class="hljs-number">1</span> &amp;&amp; !(n &amp; <span class="hljs-number">1</span>)) <span class="hljs-keyword">break</span>;
+            curr = <span class="hljs-built_in">min</span>(steps, balance[(minus - i + n) % n]);
+            res += <span class="hljs-number">1LL</span> * curr * i;
+            steps -= curr;
+            <span class="hljs-keyword">if</span> (steps == <span class="hljs-number">0</span>) <span class="hljs-keyword">break</span>;
+        }
+        <span class="hljs-keyword">if</span> (steps &gt; <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+        <span class="hljs-keyword">return</span> res;
+    }
+};</code></pre><h3 id="ueesaeaeasus">Minimum Deletions to Make Alternating Substring</h3>\n<p>When I saw &quot;range query&quot; in the problem statement, I&#39;m sured that this problem has to do with Segment Tree. First Considered a string consist of <code>A</code> and <code>B</code>, we need to calculate the times of deletion to make all neighbor elements is different. Noticed that the answer of a string can be split into two part: the <strong>sum of the answer of the left substring and the right substring</strong> and <strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> if the last element of the left substring is same as the first element of the right substring</strong>. So what we need to do is to add a selecting statement after dividing manipulation in the template of Segment Tree.</p>
+<pre><code class="hljs language-cpp"><span class="hljs-comment">// 116 ms, Beats 62.36 %</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">SegmentTree</span> {
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-meta">#<span class="hljs-keyword">define</span> lc 2 * id + 1</span>
+    <span class="hljs-meta">#<span class="hljs-keyword">define</span> rc 2 * id + 2</span>
+    string arr;
+    <span class="hljs-type">int</span> n;
+    vector&lt;<span class="hljs-type">int</span>&gt; seg;
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">build</span><span class="hljs-params">(<span class="hljs-type">int</span> left, <span class="hljs-type">int</span> right, <span class="hljs-type">int</span> id)</span></span>{
+        <span class="hljs-keyword">if</span>(left == right){
+            seg[id] = <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">return</span>;
+        }
+        <span class="hljs-type">int</span> mid = (left + right) &gt;&gt; <span class="hljs-number">1</span>;
+        <span class="hljs-built_in">build</span>(left, mid, lc);
+        <span class="hljs-built_in">build</span>(mid + <span class="hljs-number">1</span>, right, rc);
+        seg[id] = seg[lc] + seg[rc];
+        <span class="hljs-keyword">if</span>(arr[mid] == arr[mid + <span class="hljs-number">1</span>]) ++seg[id];
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">modify</span><span class="hljs-params">(<span class="hljs-type">int</span> idx, <span class="hljs-type">int</span> left, <span class="hljs-type">int</span> right, <span class="hljs-type">int</span> id)</span></span>{
+        <span class="hljs-keyword">if</span>(left == right){
+            arr[left] = <span class="hljs-string">&#x27;B&#x27;</span> - arr[left] + <span class="hljs-string">&#x27;A&#x27;</span>;
+            <span class="hljs-keyword">return</span>;
+        }
+        <span class="hljs-type">int</span> mid = (left + right) &gt;&gt; <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">if</span>(idx &lt;= mid){
+            <span class="hljs-built_in">modify</span>(idx, left, mid, lc);
+        }
+        <span class="hljs-keyword">else</span>{
+            <span class="hljs-built_in">modify</span>(idx, mid + <span class="hljs-number">1</span>, right, rc);
+        }
+        seg[id] = seg[lc] + seg[rc];
+        <span class="hljs-keyword">if</span>(arr[mid] == arr[mid + <span class="hljs-number">1</span>]) ++seg[id];
+    }
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-type">int</span> left, <span class="hljs-type">int</span> right, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r, <span class="hljs-type">int</span> id)</span></span>{
+        <span class="hljs-keyword">if</span>(l &lt;= left &amp;&amp; right &lt;= r){
+            <span class="hljs-keyword">return</span> seg[id];
+        }
+        <span class="hljs-type">int</span> mid = (left + right) &gt;&gt; <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">if</span>(r &lt;= mid){
+            <span class="hljs-keyword">return</span> <span class="hljs-built_in">query</span>(left, mid, l, r, lc);
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(l &gt; mid){
+            <span class="hljs-keyword">return</span> <span class="hljs-built_in">query</span>(mid + <span class="hljs-number">1</span>, right, l, r, rc);
+        }
+        <span class="hljs-keyword">else</span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-built_in">query</span>(left, mid, l, r, lc) + <span class="hljs-built_in">query</span>(mid + <span class="hljs-number">1</span>, right, l, r, rc) + ((arr[mid] == arr[mid + <span class="hljs-number">1</span>]) ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>);
+        }
+    }
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">SegmentTree</span>(string s){
+        arr = s;
+        n = s.<span class="hljs-built_in">length</span>();
+        seg.<span class="hljs-built_in">resize</span>(<span class="hljs-number">4</span> * n + <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+        <span class="hljs-built_in">build</span>(<span class="hljs-number">0</span>, n - <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+    }
+    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">flip</span><span class="hljs-params">(<span class="hljs-type">int</span> idx)</span></span>{
+        <span class="hljs-built_in">modify</span>(idx, <span class="hljs-number">0</span>, n - <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+    }
+    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">compute</span><span class="hljs-params">(<span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r)</span></span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">query</span>(<span class="hljs-number">0</span>, n - <span class="hljs-number">1</span>, l, r, <span class="hljs-number">0</span>);
+    }
+};
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">minDeletions</span><span class="hljs-params">(string s, vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;&amp; queries)</span> </span>{
+        <span class="hljs-function">SegmentTree <span class="hljs-title">tree</span><span class="hljs-params">(s)</span></span>;
+        vector&lt;<span class="hljs-type">int</span>&gt; res;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> &amp;v : queries){
+            <span class="hljs-keyword">if</span>(v[<span class="hljs-number">0</span>] == <span class="hljs-number">1</span>){
+                tree.<span class="hljs-built_in">flip</span>(v[<span class="hljs-number">1</span>]);
+            }
+            <span class="hljs-keyword">else</span>{
+                res.<span class="hljs-built_in">push_back</span>(tree.<span class="hljs-built_in">compute</span>(v[<span class="hljs-number">1</span>], v[<span class="hljs-number">2</span>]));
+            }
+        }
+        <span class="hljs-keyword">return</span> res;
+    }
+};</code></pre></div>
+      </article>
+      
+      <aside class="toc">
+        <div class="toc__inner">
+          <h3 class="toc__title">Table of contents</h3>
+          <nav class="toc__nav">
+            
+              <a href="#absolute-difference-between-maximum-and-minimum-k-elements" class="toc__link toc__link--level-3">Absolute Difference Between Maximum and Minimum K Elements</a>
+            
+              <a href="#reverse-words-with-same-vowel-count" class="toc__link toc__link--level-3">Reverse Words With Same Vowel Count</a>
+            
+              <a href="#minimum-moves-to-balance-circular-array" class="toc__link toc__link--level-3">Minimum Moves to Balance Circular Array</a>
+            
+              <a href="#minimum-deletions-to-make-alternating-substring" class="toc__link toc__link--level-3">Minimum Deletions to Make Alternating Substring</a>
+            
+          </nav>
+        </div>
+      </aside>
+      
+    </main>
+
+    <footer class="footer">
+      <p>&copy; 2025. All rights reserved.</p>
+    </footer>
+  </div>
+  <script>
+    (() => {
+      const el = document.querySelector(".hero__text--clickable");
+      if (!el) return;
+      const go = () => {
+        const target = el.getAttribute("data-home") || "/";
+        window.location.href = target;
+      };
+      el.addEventListener("click", go);
+      el.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          go();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

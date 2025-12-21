@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= i18n.heroTitle %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="<%= assetBase %>assets/style.css" />
+  <script src="<%= assetBase %>assets/theme-toggle.js" defer></script>
+  <script src="<%= assetBase %>assets/lang-toggle.js" defer></script>
+</head>
+<body>
+  <% const list = Array.isArray(articles) ? articles : []; %>
+  <div class="page">
+    <header class="hero">
+      <div class="hero__controls">
+        <div class="theme-toggle">
+          <button type="button" id="theme-toggle" aria-label="切換主題">
+            <span class="theme-toggle__track">
+              <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="false">
+                <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" fill="none" />
+                <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" />
+              </svg>
+              <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M21 12.79A9 9 0 0 1 11.21 3 7 7 0 1 0 21 12.79Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span class="theme-toggle__thumb"></span>
+            </span>
+          </button>
+        </div>
+        <div class="lang-switch">
+          <select id="lang-select" aria-label="Language">
+            <option value="zh" <%= (locale === 'zh') ? 'selected' : '' %>>中文</option>
+            <option value="en" <%= (locale === 'en') ? 'selected' : '' %>>English</option>
+          </select>
+        </div>
+      </div>
+      <div class="hero__text">
+        <h1><%= i18n.heroTitle %></h1>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="sidebar" aria-label="文章列表">
+        <ul class="article-list">
+          <% list.forEach(function(article) { %>
+            <li class="article-item">
+              <a class="article-link" href="<%= pageBase %><%= article.id %><%= typeof pageExt !== 'undefined' ? pageExt : '' %>">
+                <h3><%= article.title %></h3>
+                <p class="muted"><%= article.summary %></p>
+                <div class="article-meta">
+                  <span><%= article.date %></span>
+                  <% (article.tags || []).forEach(function(tag) { %>
+                    <span class="tag"><%= tag %></span>
+                  <% }) %>
+                </div>
+              </a>
+            </li>
+          <% }) %>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; 2025. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
