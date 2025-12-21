@@ -113,7 +113,7 @@ async function loadArticles() {
 
     target.push({
       id,
-      title: data.title || id,
+      title: (data.title || id).trim().replace(/\n/g, ' '),
       summary: data.summary || "",
       date: data.date || stats.mtime.toISOString().split("T")[0],
       tags: data.tags || [],
