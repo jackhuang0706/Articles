@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Markdown 語法全面測試 | 文章列表</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <link rel="stylesheet" href="../assets/highlight-github.min.css?v=7ccd333071c93fe135ce273a9a115e937c8ccecc" />
+  <link rel="stylesheet" href="../assets/style.css?v=7ccd333071c93fe135ce273a9a115e937c8ccecc" />
+  <script>
+    window.__PAGE_BASE__ = "/Articles";
+  </script>
+  <script src="../assets/code-tabs.js?v=7ccd333071c93fe135ce273a9a115e937c8ccecc" defer></script>
+  <script src="../assets/theme-toggle.js?v=7ccd333071c93fe135ce273a9a115e937c8ccecc" defer></script>
+  <script src="../assets/lang-toggle.js?v=7ccd333071c93fe135ce273a9a115e937c8ccecc" defer></script>
+  <script src="../assets/toc.js?v=7ccd333071c93fe135ce273a9a115e937c8ccecc" defer></script>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+  <div class="hero__controls">
+    <div class="theme-toggle">
+      <button type="button" id="theme-toggle" aria-label="切換主題">
+        <span class="theme-toggle__track">
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="false">
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" fill="none" />
+            <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" />
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 0 1 11.21 3 7 7 0 1 0 21 12.79Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span class="theme-toggle__thumb"></span>
+        </span>
+      </button>
+    </div>
+    <div class="lang-switch">
+      <select id="lang-select" aria-label="Language">
+        <option value="zh" selected>中文</option>
+        <option value="en" >English</option>
+      </select>
+    </div>
+  </div>
+  <div class="hero__text hero__text--clickable" data-home="/Articles/" role="button" tabindex="0" aria-label="← 返回列表">
+    <h1>文章列表</h1>
+  </div>
+</header>
+
+
+    <main class="layout layout--with-toc">
+  <article class="reader">
+    <a class="back-link" href="/Articles/">← 返回列表</a>
+    <h1>Markdown 語法全面測試</h1><p class="date">
+      2025-12-21
+      
+        ·
+        
+          <span class="tag">Markdown</span> 
+        
+          <span class="tag">測試</span> 
+        
+          <span class="tag">語法</span>
+        
+      
+    </p>
+    <!-- NO_JEKYLL_PROCESSING -->
+    <div class="article-body">
+<h1 id="標題與段落">標題與段落</h1>
+<p>Markdown 支援六個層級的標題，使用 <code>#</code> 符號表示，數量越多層級越低：</p>
+<h2 id="第二層標題h2">第二層標題（H2）</h2>
+<p>使用 <code>## 標題文字</code> 建立。適合用於章節標題。</p>
+<h3 id="第三層標題h3">第三層標題（H3）</h3>
+<p>使用 <code>### 標題文字</code> 建立。適合用於小節標題。</p>
+<h4 id="第四層標題h4">第四層標題（H4）</h4>
+<p>使用 <code>#### 標題文字</code> 建立。適合用於更細的分類。</p>
+<h5 id="第五層標題h5">第五層標題（H5）</h5>
+<p>使用 <code>##### 標題文字</code> 建立。較少使用，適合深層結構。</p>
+<h6 id="第六層標題h6">第六層標題（H6）</h6>
+<p>使用 <code>###### 標題文字</code> 建立。最小的標題層級。</p>
+<hr>
+<h2 id="文字格式">文字格式</h2>
+<p>這篇用來驗證 Markdown 渲染是否正確，並示範常見語法：</p>
+<ul>
+<li><strong>粗體</strong>：使用 <code>**文字**</code> 或 <code>__文字__</code></li>
+<li><em>斜體</em>：使用 <code>*文字*</code> 或 <code>_文字_</code></li>
+<li><em><strong>粗斜體</strong></em>：使用 <code>***文字***</code></li>
+<li><code>inline code</code>：使用反引號 <code>`code`</code></li>
+<li><del>刪除線</del>：使用 <code>~~文字~~</code></li>
+<li><a href="https://example.com">超連結</a>：使用 <code>[文字](網址)</code></li>
+</ul>
+<hr>
+<h2 id="引用區塊">引用區塊</h2>
+<blockquote>
+<p>引言：可以包含 <strong>粗體</strong>、<code>inline code</code>，也可換行。
+第二行引言。</p>
+</blockquote>
+<p>使用 <code>&gt;</code> 符號建立引用區塊，常用於引述他人文字或強調重點。</p>
+<hr>
+<h2 id="清單">清單</h2><h3 id="無序清單">無序清單</h3>
+<p>使用 <code>-</code>、<code>+</code> 或 <code>*</code> 開頭：</p>
+<ul>
+<li>無序列表示例<ul>
+<li>巢狀項目 A</li>
+<li>巢狀項目 B</li>
+</ul>
+</li>
+<li>✅ 完成項目</li>
+<li>⏳ 進行中</li>
+</ul>
+<h3 id="有序清單">有序清單</h3>
+<p>使用數字加點號 <code>1.</code> 開頭：</p>
+<ol>
+<li>有序列表第一步</li>
+<li>第二步<ol>
+<li>子步驟 2.1</li>
+<li>子步驟 2.2</li>
+</ol>
+</li>
+<li>第三步</li>
+</ol>
+<h2 id="表格">表格</h2>
+<p>使用 <code>|</code> 和 <code>-</code> 建立表格，第二行用於對齊設定：</p>
+<table>
+<thead>
+<tr>
+<th>語法</th>
+<th>說明</th>
+<th>備註</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>**bold**</code></td>
+<td>粗體</td>
+<td>強調重點</td>
+</tr>
+<tr>
+<td><code>*italic*</code></td>
+<td>斜體</td>
+<td>較弱強調</td>
+</tr>
+<tr>
+<td><code>`code`</code></td>
+<td>行內程式碼</td>
+<td>片段</td>
+</tr>
+</tbody></table>
+<p>對齊方式：</p>
+<ul>
+<li>靠左：<code>| ---- |</code></li>
+<li>置中：<code>| :----: |</code></li>
+<li>靠右：<code>| ----: |</code></li>
+</ul>
+<h2 id="圖片與連結">圖片與連結</h2><h3 id="連結">連結</h3>
+<p>使用 <code>[文字](網址)</code> 語法：</p>
+<ul>
+<li>外部連結：<a href="https://www.google.com">Google</a></li>
+<li>相對路徑：<a href="./write-markdown">其他文章</a></li>
+</ul>
+<h3 id="圖片">圖片</h3>
+<p>使用 <code>![替代文字](圖片網址)</code> 語法：</p>
+<p><img src="https://via.placeholder.com/400x180?text=Markdown+Image" alt="示意圖"></p>
+<p>圖片會自動調整至文字寬度內，保持比例不變形。</p>
+<hr>
+<h2 id="程式碼區塊多語言">程式碼區塊（多語言）</h2><h3 id="javascript">JavaScript</h3>
+<p>使用三個反引號 <code>```</code> 包裹程式碼，並指定語言以啟用語法高亮：</p>
+<pre data-variant=""><code class="hljs language-js"><span class="hljs-keyword">functio</span> <span class="hljs-title function_">greet</span>(<span class="hljs-params">name</span>) {
+  <span class="hljs-keyword">const</span> msg = <span class="hljs-string">`Hello, <span class="hljs-subst">${name}</span>!`</span>;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(msg);
+  <span class="hljs-keyword">retur</span> msg;
+}
+
+<span class="hljs-title function_">greet</span>(<span class="hljs-string">&quot;World&quot;</span>);</code></pre><h3 id="python">Pytho</h3>
+<pre data-variant=""><code class="hljs language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">fib</span>(<span class="hljs-params"></span>):
+    a, b = <span class="hljs-number">0</span>, <span class="hljs-number">1</span>
+    out = []
+    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">i</span> <span class="hljs-built_in">range</span>(n):
+        out.append(a)
+        a, b = b, a + b
+    <span class="hljs-keyword">retur</span> out
+
+<span class="hljs-built_in">print</span>(fib(<span class="hljs-number">7</span>))</code></pre><h3 id="bash">Bash</h3>
+<pre><code class="hljs language-bash"><span class="hljs-meta">#!/usr/bin/env bash</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Build project&quot;</span>
+npm run build</code></pre><h3 id="html">HTML</h3>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">sectio</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;card&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Card Title<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Some content here.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sectio</span>&gt;</span></code></pre><h3 id="css">CSS</h3>
+<pre><code class="hljs language-css"><span class="hljs-selector-class">.card</span> {
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> dashed <span class="hljs-number">#ccc</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">12px</span>;
+}</code></pre><h3 id="json">JSON</h3>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;title&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Markdown Test&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;tags&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;Markdown&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;Test&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;ok&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span>
+<span class="hljs-punctuation">}</span></code></pre><h3 id="diff差異顯示">Diff（差異顯示）</h3>
+<pre><code class="hljs language-diff"><span class="hljs-deletion">- const mode = &quot;dev&quot;;</span>
+<span class="hljs-addition">+ const mode = process.env.NODE_ENV || &quot;dev&quot;;</span></code></pre><hr>
+<h2 id="水平分隔線">水平分隔線</h2>
+<p>使用三個或以上的 <code>-</code>、<code>*</code> 或 <code>_</code> 建立分隔線：</p>
+<pre><code class="hljs language-markdown">---
+<span class="hljs-strong">***
+__<span class="hljs-emphasis">_</span></span></code></pre><hr>
+<h2 id="內文排版">內文排版</h2>
+<p>段落之間要有空行，以確保正確換行。行內 <code>code</code> 與外框程式碼區塊需使用適當語言標記，才能看到高亮效果。</p>
+<h3 id="markdown-語法總結">Markdown 語法總結</h3>
+<table>
+<thead>
+<tr>
+<th align="left">元素</th>
+<th align="left">語法</th>
+<th align="left">範例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">標題</td>
+<td align="left"><code># H1</code> 到 <code>###### H6</code></td>
+<td align="left"><code>## 第二層標題</code></td>
+</tr>
+<tr>
+<td align="left">粗體</td>
+<td align="left"><code>**文字**</code></td>
+<td align="left"><strong>粗體</strong></td>
+</tr>
+<tr>
+<td align="left">斜體</td>
+<td align="left"><code>*文字*</code></td>
+<td align="left"><em>斜體</em></td>
+</tr>
+<tr>
+<td align="left">行內程式碼</td>
+<td align="left"><code>`code`</code></td>
+<td align="left"><code>const x = 1;</code></td>
+</tr>
+<tr>
+<td align="left">連結</td>
+<td align="left"><code>[文字](網址)</code></td>
+<td align="left"><a href="https://google.com">Google</a></td>
+</tr>
+<tr>
+<td align="left">圖片</td>
+<td align="left"><code>![alt](網址)</code></td>
+<td align="left"><img src="url" alt="img"></td>
+</tr>
+<tr>
+<td align="left">引用</td>
+<td align="left"><code>&gt; 文字</code></td>
+<td align="left">&gt; 引用內容</td>
+</tr>
+<tr>
+<td align="left">無序清單</td>
+<td align="left"><code>- 項目</code></td>
+<td align="left">- 項目</td>
+</tr>
+<tr>
+<td align="left">有序清單</td>
+<td align="left"><code>1. 項目</code></td>
+<td align="left">1. 項目</td>
+</tr>
+<tr>
+<td align="left">程式碼區塊</td>
+<td align="left"><code>```語言</code></td>
+<td align="left"><code>```js</code></td>
+</tr>
+<tr>
+<td align="left">水平線</td>
+<td align="left"><code>---</code></td>
+<td align="left">---</td>
+</tr>
+<tr>
+<td align="left">表格</td>
+<td align="left"><code>| 欄 | 欄 |</code></td>
+<td align="left">見上方表格範例</td>
+</tr>
+</tbody></table>
+
+    </div>
+  </article>
+  
+  <aside class="toc">
+    <div class="toc__inner">
+      <h3 class="toc__title">目錄</h3>
+      <nav class="toc__nav">
+        
+          <a href="#第二層標題h2" class="toc__link toc__link--level-2">第二層標題（H2）</a>
+        
+          <a href="#第三層標題h3" class="toc__link toc__link--level-3">第三層標題（H3）</a>
+        
+          <a href="#文字格式" class="toc__link toc__link--level-2">文字格式</a>
+        
+          <a href="#引用區塊" class="toc__link toc__link--level-2">引用區塊</a>
+        
+          <a href="#清單" class="toc__link toc__link--level-2">清單</a>
+        
+          <a href="#無序清單" class="toc__link toc__link--level-3">無序清單</a>
+        
+          <a href="#有序清單" class="toc__link toc__link--level-3">有序清單</a>
+        
+          <a href="#表格" class="toc__link toc__link--level-2">表格</a>
+        
+          <a href="#圖片與連結" class="toc__link toc__link--level-2">圖片與連結</a>
+        
+          <a href="#連結" class="toc__link toc__link--level-3">連結</a>
+        
+          <a href="#圖片" class="toc__link toc__link--level-3">圖片</a>
+        
+          <a href="#程式碼區塊多語言" class="toc__link toc__link--level-2">程式碼區塊（多語言）</a>
+        
+          <a href="#javascript" class="toc__link toc__link--level-3">JavaScript</a>
+        
+          <a href="#python" class="toc__link toc__link--level-3">Python</a>
+        
+          <a href="#bash" class="toc__link toc__link--level-3">Bash</a>
+        
+          <a href="#html" class="toc__link toc__link--level-3">HTML</a>
+        
+          <a href="#css" class="toc__link toc__link--level-3">CSS</a>
+        
+          <a href="#json" class="toc__link toc__link--level-3">JSON</a>
+        
+          <a href="#diff差異顯示" class="toc__link toc__link--level-3">Diff（差異顯示）</a>
+        
+          <a href="#水平分隔線" class="toc__link toc__link--level-2">水平分隔線</a>
+        
+          <a href="#內文排版" class="toc__link toc__link--level-2">內文排版</a>
+        
+          <a href="#markdown-語法總結" class="toc__link toc__link--level-3">Markdown 語法總結</a>
+        
+      </nav>
+    </div>
+  </aside>
+  
+</main>
+
+
+    <footer class="footer">
+  <p>&copy; 2025. All rights reserved.</p>
+</footer>
+
+  </div>
+  <script>
+    // Remove stray "\n" text nodes between block elements inside article-body
+    (function() {
+      var body = document.querySelector('.article-body');
+      if (!body) return;
+      var walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, null);
+      var nodes = [];
+      while (walker.nextNode()) {
+        var t = walker.currentNode;
+        if (t && typeof t.nodeValue === 'string' && t.nodeValue.trim() === '\\n') {
+          nodes.push(t);
+        }
+      }
+      nodes.forEach(function(n) {
+        if (n.parentNode) n.parentNode.removeChild(n);
+      });
+    })();
+  </script>
+  <script>
+    (() => {
+      const el = document.querySelector(".hero__text--clickable");
+      if (!el) return;
+      const go = () => {
+        const target = el.getAttribute("data-home") || "/";
+        window.location.href = target;
+      };
+      el.addEventListener("click", go);
+      el.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          go();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

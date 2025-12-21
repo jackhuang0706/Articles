@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Markdown Syntax Full Test | Articles</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../assets/highlight-github.min.css?v=7ccd333071c93fe135ce273a9a115e937c8ccecc" />
+  <link rel="stylesheet" href="../../assets/style.css?v=7ccd333071c93fe135ce273a9a115e937c8ccecc" />
+  <script>
+    window.__PAGE_BASE__ = "/Articles";
+  </script>
+  <script src="../../assets/code-tabs.js?v=7ccd333071c93fe135ce273a9a115e937c8ccecc" defer></script>
+  <script src="../../assets/theme-toggle.js?v=7ccd333071c93fe135ce273a9a115e937c8ccecc" defer></script>
+  <script src="../../assets/lang-toggle.js?v=7ccd333071c93fe135ce273a9a115e937c8ccecc" defer></script>
+  <script src="../../assets/toc.js?v=7ccd333071c93fe135ce273a9a115e937c8ccecc" defer></script>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+  <div class="hero__controls">
+    <div class="theme-toggle">
+      <button type="button" id="theme-toggle" aria-label="切換主題">
+        <span class="theme-toggle__track">
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" aria-hidden="false">
+            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" fill="none" />
+            <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" />
+          </svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 0 1 11.21 3 7 7 0 1 0 21 12.79Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span class="theme-toggle__thumb"></span>
+        </span>
+      </button>
+    </div>
+    <div class="lang-switch">
+      <select id="lang-select" aria-label="Language">
+        <option value="zh" >中文</option>
+        <option value="en" selected>English</option>
+      </select>
+    </div>
+  </div>
+  <div class="hero__text hero__text--clickable" data-home="/Articles/en" role="button" tabindex="0" aria-label="← Back to list">
+    <h1>Articles</h1>
+  </div>
+</header>
+
+
+    <main class="layout layout--with-toc">
+  <article class="reader">
+    <a class="back-link" href="/Articles/en">← Back to list</a>
+    <h1>Markdown Syntax Full Test</h1><p class="date">
+      2025-12-21
+      
+        ·
+        
+          <span class="tag">Markdown</span> 
+        
+          <span class="tag">Test</span> 
+        
+          <span class="tag">Syntax</span>
+        
+      
+    </p>
+    <!-- NO_JEKYLL_PROCESSING -->
+    <div class="article-body">
+<h1 id="headings-and-paragraphs">Headings and Paragraphs</h1>
+<p>Markdown supports six levels of headings using <code>#</code> symbols. More symbols mean lower levels:</p>
+<h2 id="second-level-heading-h2">Second-level Heading (H2)</h2>
+<p>Use <code>## Heading Text</code> to create. Suitable for section titles.</p>
+<h3 id="third-level-heading-h3">Third-level Heading (H3)</h3>
+<p>Use <code>### Heading Text</code> to create. Suitable for subsection titles.</p>
+<h4 id="fourth-level-heading-h4">Fourth-level Heading (H4)</h4>
+<p>Use <code>#### Heading Text</code> to create. Suitable for finer categorization.</p>
+<h5 id="fifth-level-heading-h5">Fifth-level Heading (H5)</h5>
+<p>Use <code>##### Heading Text</code> to create. Less commonly used, suitable for deep structures.</p>
+<h6 id="sixth-level-heading-h6">Sixth-level Heading (H6)</h6>
+<p>Use <code>###### Heading Text</code> to create. The smallest heading level.</p>
+<hr>
+<h2 id="text-formatting">Text Formatting</h2>
+<p>This article verifies Markdown rendering and shows common syntax:</p>
+<ul>
+<li><strong>Bold</strong>: Use <code>**text**</code> or <code>__text__</code></li>
+<li><em>Italics</em>: Use <code>*text*</code> or <code>_text_</code></li>
+<li><em><strong>Bold Italics</strong></em>: Use <code>***text***</code></li>
+<li><code>inline code</code>: Use backticks <code>`code`</code></li>
+<li><del>Strikethrough</del>: Use <code>~~text~~</code></li>
+<li><a href="https://example.com">Links</a>: Use <code>[text](url)</code></li>
+</ul>
+<hr>
+<h2 id="block-quotes">Block Quotes</h2>
+<blockquote>
+<p>Quote: can contain <strong>bold</strong> and <code>inline code</code>, and can span lines.
+Second line of quote.</p>
+</blockquote>
+<p>Use <code>&gt;</code> symbol to create block quotes, commonly used for quoting text or emphasizing points.</p>
+<hr>
+<h2 id="lists">Lists</h2><h3 id="unordered-lists">Unordered Lists</h3>
+<p>Use <code>-</code>, <code>+</code>, or <code>*</code> to start:</p>
+<ul>
+<li>Unordered list example<ul>
+<li>Nested item A</li>
+<li>Nested item B</li>
+</ul>
+</li>
+<li>✅ Done item</li>
+<li>⏳ In progress</li>
+</ul>
+<h3 id="ordered-lists">Ordered Lists</h3>
+<p>Use numbers followed by a period <code>1.</code> to start:</p>
+<ol>
+<li>Ordered step one</li>
+<li>Step two<ol>
+<li>Substep 2.1</li>
+<li>Substep 2.2</li>
+</ol>
+</li>
+<li>Step three</li>
+</ol>
+<h2 id="table">Table</h2>
+<p>Use <code>|</code> and <code>-</code> to create tables. The second row defines alignment:</p>
+<table>
+<thead>
+<tr>
+<th>Syntax</th>
+<th>Meaning</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>**bold**</code></td>
+<td>Bold</td>
+<td>Emphasis</td>
+</tr>
+<tr>
+<td><code>*italic*</code></td>
+<td>Italic</td>
+<td>Softer emphasis</td>
+</tr>
+<tr>
+<td><code>`code`</code></td>
+<td>Inline code</td>
+<td>Snippet</td>
+</tr>
+</tbody></table>
+<p>Alignment options:</p>
+<ul>
+<li>Left: <code>| --- |</code></li>
+<li>Center: <code>| :---: |</code></li>
+<li>Right: <code>| ---: |</code></li>
+</ul>
+<h2 id="images-and-links">Images and Links</h2><h3 id="links">Links</h3>
+<p>Use <code>[text](url)</code> syntax:</p>
+<ul>
+<li>External link: <a href="https://www.google.com">Google</a></li>
+<li>Relative path: <a href="./write-markdown">Other article</a></li>
+</ul>
+<h3 id="images">Images</h3>
+<p>Use <code>![alt text](image url)</code> syntax:</p>
+<p><img src="https://via.placeholder.com/400x180?text=Markdown+Image" alt="Placeholder"></p>
+<p>Images automatically adjust to text width and maintain aspect ratio.</p>
+<hr>
+<h2 id="code-blocks-multi-language">Code Blocks (Multi-language)</h2><h3 id="javascript">JavaScript</h3>
+<p>Use triple backticks <code>```</code> to wrap code, specify the language for syntax highlighting:</p>
+<pre data-variant=""><code class="hljs language-js"><span class="hljs-keyword">functio</span> <span class="hljs-title function_">greet</span>(<span class="hljs-params">name</span>) {
+  <span class="hljs-keyword">const</span> msg = <span class="hljs-string">`Hello, <span class="hljs-subst">${name}</span>!`</span>;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(msg);
+  <span class="hljs-keyword">retur</span> msg;
+}
+
+<span class="hljs-title function_">greet</span>(<span class="hljs-string">&quot;World&quot;</span>);</code></pre><h3 id="python">Pytho</h3>
+<pre data-variant=""><code class="hljs language-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">fib</span>(<span class="hljs-params"></span>):
+    a, b = <span class="hljs-number">0</span>, <span class="hljs-number">1</span>
+    out = []
+    <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">i</span> <span class="hljs-built_in">range</span>(n):
+        out.append(a)
+        a, b = b, a + b
+    <span class="hljs-keyword">retur</span> out
+
+<span class="hljs-built_in">print</span>(fib(<span class="hljs-number">7</span>))</code></pre><h3 id="bash">Bash</h3>
+<pre><code class="hljs language-bash"><span class="hljs-meta">#!/usr/bin/env bash</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Build project&quot;</span>
+npm run build</code></pre><h3 id="html">HTML</h3>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">sectio</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;card&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Card Title<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Some content here.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">sectio</span>&gt;</span></code></pre><h3 id="css">CSS</h3>
+<pre><code class="hljs language-css"><span class="hljs-selector-class">.card</span> {
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> dashed <span class="hljs-number">#ccc</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">12px</span>;
+}</code></pre><h3 id="json">JSON</h3>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;title&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Markdown Test&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;tags&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;Markdown&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;Test&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;ok&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span>
+<span class="hljs-punctuation">}</span></code></pre><h3 id="diff-change-display">Diff (Change Display)</h3>
+<pre><code class="hljs language-diff"><span class="hljs-deletion">- const mode = &quot;dev&quot;;</span>
+<span class="hljs-addition">+ const mode = process.env.NODE_ENV || &quot;dev&quot;;</span></code></pre><hr>
+<h2 id="horizontal-rules">Horizontal Rules</h2>
+<p>Use three or more <code>-</code>, <code>*</code>, or <code>_</code> to create horizontal rules:</p>
+<pre><code class="hljs language-markdown">---
+<span class="hljs-strong">***
+__<span class="hljs-emphasis">_</span></span></code></pre><hr>
+<h2 id="body-text">Body Text</h2>
+<p>Keep blank lines between paragraphs for proper breaks. Use language markers on inline <code>code</code> and fenced code blocks to see syntax highlighting.</p>
+<h3 id="markdown-syntax-summary">Markdown Syntax Summary</h3>
+<table>
+<thead>
+<tr>
+<th align="left">Element</th>
+<th align="left">Syntax</th>
+<th align="left">Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Heading</td>
+<td align="left"><code># H1</code> to <code>###### H6</code></td>
+<td align="left"><code>## Second Level</code></td>
+</tr>
+<tr>
+<td align="left">Bold</td>
+<td align="left"><code>**text**</code></td>
+<td align="left"><strong>bold</strong></td>
+</tr>
+<tr>
+<td align="left">Italic</td>
+<td align="left"><code>*text*</code></td>
+<td align="left"><em>italic</em></td>
+</tr>
+<tr>
+<td align="left">Inline Code</td>
+<td align="left"><code>`code`</code></td>
+<td align="left"><code>const x = 1;</code></td>
+</tr>
+<tr>
+<td align="left">Link</td>
+<td align="left"><code>[text](url)</code></td>
+<td align="left"><a href="https://google.com">Google</a></td>
+</tr>
+<tr>
+<td align="left">Image</td>
+<td align="left"><code>![alt](url)</code></td>
+<td align="left"><img src="url" alt="img"></td>
+</tr>
+<tr>
+<td align="left">Quote</td>
+<td align="left"><code>&gt; text</code></td>
+<td align="left">&gt; Quoted content</td>
+</tr>
+<tr>
+<td align="left">Unordered List</td>
+<td align="left"><code>- item</code></td>
+<td align="left">- item</td>
+</tr>
+<tr>
+<td align="left">Ordered List</td>
+<td align="left"><code>1. item</code></td>
+<td align="left">1. item</td>
+</tr>
+<tr>
+<td align="left">Code Block</td>
+<td align="left"><code>```language</code></td>
+<td align="left"><code>```js</code></td>
+</tr>
+<tr>
+<td align="left">Horizontal Rule</td>
+<td align="left"><code>---</code></td>
+<td align="left">---</td>
+</tr>
+<tr>
+<td align="left">Table</td>
+<td align="left"><code>| col | col |</code></td>
+<td align="left">See table examples above</td>
+</tr>
+</tbody></table>
+
+    </div>
+  </article>
+  
+  <aside class="toc">
+    <div class="toc__inner">
+      <h3 class="toc__title">Table of contents</h3>
+      <nav class="toc__nav">
+        
+          <a href="#second-level-heading-h2" class="toc__link toc__link--level-2">Second-level Heading (H2)</a>
+        
+          <a href="#third-level-heading-h3" class="toc__link toc__link--level-3">Third-level Heading (H3)</a>
+        
+          <a href="#text-formatting" class="toc__link toc__link--level-2">Text Formatting</a>
+        
+          <a href="#block-quotes" class="toc__link toc__link--level-2">Block Quotes</a>
+        
+          <a href="#lists" class="toc__link toc__link--level-2">Lists</a>
+        
+          <a href="#unordered-lists" class="toc__link toc__link--level-3">Unordered Lists</a>
+        
+          <a href="#ordered-lists" class="toc__link toc__link--level-3">Ordered Lists</a>
+        
+          <a href="#table" class="toc__link toc__link--level-2">Table</a>
+        
+          <a href="#images-and-links" class="toc__link toc__link--level-2">Images and Links</a>
+        
+          <a href="#links" class="toc__link toc__link--level-3">Links</a>
+        
+          <a href="#images" class="toc__link toc__link--level-3">Images</a>
+        
+          <a href="#code-blocks-multi-language" class="toc__link toc__link--level-2">Code Blocks (Multi-language)</a>
+        
+          <a href="#javascript" class="toc__link toc__link--level-3">JavaScript</a>
+        
+          <a href="#python" class="toc__link toc__link--level-3">Python</a>
+        
+          <a href="#bash" class="toc__link toc__link--level-3">Bash</a>
+        
+          <a href="#html" class="toc__link toc__link--level-3">HTML</a>
+        
+          <a href="#css" class="toc__link toc__link--level-3">CSS</a>
+        
+          <a href="#json" class="toc__link toc__link--level-3">JSON</a>
+        
+          <a href="#diff-change-display" class="toc__link toc__link--level-3">Diff (Change Display)</a>
+        
+          <a href="#horizontal-rules" class="toc__link toc__link--level-2">Horizontal Rules</a>
+        
+          <a href="#body-text" class="toc__link toc__link--level-2">Body Text</a>
+        
+          <a href="#markdown-syntax-summary" class="toc__link toc__link--level-3">Markdown Syntax Summary</a>
+        
+      </nav>
+    </div>
+  </aside>
+  
+</main>
+
+
+    <footer class="footer">
+  <p>&copy; 2025. All rights reserved.</p>
+</footer>
+
+  </div>
+  <script>
+    // Remove stray "\n" text nodes between block elements inside article-body
+    (function() {
+      var body = document.querySelector('.article-body');
+      if (!body) return;
+      var walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, null);
+      var nodes = [];
+      while (walker.nextNode()) {
+        var t = walker.currentNode;
+        if (t && typeof t.nodeValue === 'string' && t.nodeValue.trim() === '\\n') {
+          nodes.push(t);
+        }
+      }
+      nodes.forEach(function(n) {
+        if (n.parentNode) n.parentNode.removeChild(n);
+      });
+    })();
+  </script>
+  <script>
+    (() => {
+      const el = document.querySelector(".hero__text--clickable");
+      if (!el) return;
+      const go = () => {
+        const target = el.getAttribute("data-home") || "/";
+        window.location.href = target;
+      };
+      el.addEventListener("click", go);
+      el.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          go();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
