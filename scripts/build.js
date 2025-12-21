@@ -16,8 +16,14 @@ function escapeAttr(value) {
 
 const renderer = {
   heading(token) {
-    // 生成 slug ID
-    const id = token.text
+    // 生成 slug ID，並清理 text 中的換行和控制字符
+    const cleanText = token.text
+      .replace(/\\/g, '') // 移除反斜線
+      .replace(/\n/g, '') // 移除換行符
+      .replace(/[\r\t]/g, ' ') // 其他空白轉為空格
+      .trim();
+    
+    const id = cleanText
       .toLowerCase()
       .replace(/<[^>]*>/g, '') // 移除 HTML 標籤
       .replace(/[^\w\u4e00-\u9fa5\s-]/g, '') // 保留字母、數字、中文、空格、連字號
@@ -25,7 +31,7 @@ const renderer = {
       .replace(/\s+/g, '-') // 空格轉連字號
       .replace(/-+/g, '-') // 多個連字號合併
       .replace(/^-|-$/g, ''); // 移除首尾連字號
-    return `<h${token.depth} id="${id}">${token.text}</h${token.depth}>`;
+    return `<h${token.depth} id="${id}">${cleanText}</h${token.depth}>`;
   },
   code(codeArg, infoString = "") {
     let source = "";
@@ -73,9 +79,14 @@ function extractTOC(content) {
   const tokens = marked.lexer(content);
   tokens.forEach((token) => {
     if (token.type === "heading" && token.depth >= 2 && token.depth <= 3) {
-      const text = token.text;
+      const cleanText = token.text
+        .replace(/\\/g, '') // 移除反斜線
+        .replace(/\n/g, '') // 移除換行符
+        .replace(/[\r\t]/g, ' ') // 其他空白轉為空格
+        .trim();
+      
       // 使用與 marked 相同的 slug 生成邏輯
-      const id = text
+      const id = cleanText
         .toLowerCase()
         .replace(/<[^>]*>/g, '') // 移除 HTML 標籤
         .replace(/[^\w\u4e00-\u9fa5\s-]/g, '') // 保留字母、數字、中文、空格、連字號
@@ -83,7 +94,7 @@ function extractTOC(content) {
         .replace(/\s+/g, '-') // 空格轉連字號
         .replace(/-+/g, '-') // 多個連字號合併為一個
         .replace(/^-|-$/g, ''); // 移除首尾連字號
-      toc.push({ level: token.depth, text, id });
+      toc.push({ level: token.depth, text: cleanText, id });
     }
   });
   return toc;
@@ -187,8 +198,14 @@ async function build() {
 
     for (const article of list) {
       const toc = extractTOC(article.content);
-      const articleHtml = marked.parse(article.content, { mangle: false, langPrefix: "hljs language-" })
-        .replace(/\\n/g, ''); // 移除字面顯示的 \n
+      let articleHtml = marked.parse(article.content, { mangle: false, langPrefix: "hljs language-" });
+      // 移除所有 \n 變體與多餘換行
+      articleHtml = articleHtml
+        .replace(/\\n/g, '')  // 字面的 \n（反斜線+n）
+        .replace(/<h([1-6])\s+id="([^"]*)">\s*\\n/g, '<h$1 id="$2">') // h標籤後的 \n
+        .replace(/\\n/g, '') // 再清理一遍以防
+        .replace(/>\s*\n\s*</g, '><') // 移除標籤間的換行符
+        .replace(/>\s+</g, '> <'); // 標籤間保留單個空格
       const html = await ejs.renderFile(
         articleTpl,
         {
