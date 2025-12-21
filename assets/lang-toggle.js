@@ -7,26 +7,34 @@
 
   const toLocalePath = (targetLocale) => {
     const { pathname, search, hash } = window.location;
-    // 移除 basePath 來取得相對路徑
+    
+    // Remove basePath from pathname to get relative path
     let relativePath = pathname;
     if (basePath && pathname.startsWith(basePath)) {
       relativePath = pathname.slice(basePath.length) || "/";
     }
     
+    // Ensure relative path starts with /
+    if (!relativePath.startsWith("/")) {
+      relativePath = "/" + relativePath;
+    }
+    
     const isIndexZh = relativePath === "/";
     const isIndexEn = relativePath === "/en" || relativePath === "/en/";
-    // Remove leading '/en' and trailing '/en' to get article base
-    const base = relativePath
-      .replace(/^(\/en)(?=\/|$)/, "")
-      .replace(/(\/en)(?=\/|$)/, "");
-    const rest = normalize(base);
+    
+    // Remove trailing '/en' to get article base path
+    // For /article-slug/en -> /article-slug
+    const articleBase = relativePath.replace(/(\/en)$/, "");
+    const rest = normalize(articleBase === "" ? "/" : articleBase);
 
     let next;
     if (targetLocale === "en") {
       if (isIndexZh) {
         next = "/en";
+      } else if (rest === "/") {
+        next = "/en";
       } else {
-        next = rest === "/" ? "/en" : normalize(`${rest}/en`);
+        next = normalize(`${rest}/en`);
       }
     } else {
       // zh

@@ -1,6 +1,5 @@
 <main class="layout layout--with-toc">
   <article class="reader">
-    <a class="back-link" href="<%= homeHref %>"><%= i18n.back %></a>
     <h1><%= article.title %></h1><p class="date">
       <%= article.date %>
       <% if ((article.tags || []).length) { %>
@@ -17,6 +16,7 @@
   </article>
   <% if (typeof toc !== 'undefined' && toc.length > 0) { %>
   <aside class="toc">
+    <a href="<%= homeHref %>" class="toc__back-link"><%= i18n.back %></a>
     <div class="toc__inner">
       <h3 class="toc__title"><%= i18n.toc %></h3>
       <nav class="toc__nav">

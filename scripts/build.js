@@ -220,8 +220,8 @@ async function build() {
           toc,
           assetBase: locale.code === "en" ? "../../" : "../",
           assetVersion,
-          pageBase: basePath + "/",
-          homeHref: locale.code === "en" ? basePath + "/en" : basePath + "/",
+          pageBase: basePath || "/",
+          homeHref: locale.code === "en" ? basePath + "/en" : basePath + "/" || "/",
           i18n: locale.i18n,
           locale: locale.code
         },

@@ -531,6 +531,18 @@ body {
   margin: 6px 0;
 }
 
+.footer-link {
+  color: var(--muted-strong);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-soft);
+  transition: all 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--text);
+  border-bottom-color: var(--muted-strong);
+}
+
 /* Table of Contents Sidebar */
 .layout--with-toc {
   display: grid;
@@ -604,6 +616,19 @@ body {
 .toc__link.active {
   color: var(--link);
   font-weight: 500;
+}
+
+.toc__back-link {
+  display: block;
+  color: var(--muted-strong);
+  text-decoration: none;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease;
+  font-size: 0.9375rem;
+}
+
+.toc__back-link:hover {
+  color: var(--text);
 }
 
 @media (max-width: 960px) {

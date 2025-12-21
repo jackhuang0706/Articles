@@ -212,7 +212,10 @@ async function renderArticle(localeCode, req, res) {
   try {
     const locale = localeMap.get(localeCode) || localeMap.get("zh");
     const list = articlesByLocale[locale.code] || [];
-    const base = locale.prefix ? `/${locale.prefix}/` : "/";
+    // For articles, both zh and en use root pageBase (/)
+    // en articles are at /:id/en, zh articles are at /:id
+    const base = "/";
+    const homeHref = locale.prefix ? `/${locale.prefix}/` : "/";
     const id = req.params.id;
     const article = list.find((a) => a.id === id);
     if (!article) {
@@ -232,7 +235,7 @@ async function renderArticle(localeCode, req, res) {
         assetBase: "/",
         assetVersion,
         pageBase: base,
-        homeHref: base,
+        homeHref: homeHref,
         i18n: locale.i18n,
         locale: locale.code
       },
