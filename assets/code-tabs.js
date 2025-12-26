@@ -42,7 +42,7 @@
   const groups = [];
   const headingsToRemove = new Set();
 
-  // 只基於 data-variant 分組：只要 ``` 後面有 []，就找所有相同 variant 的合併
+  // 只基於連續的相同 variant 分組：中間有非標題內容就分開
   for (let i = 0; i < children.length; ) {
     if (handled.has(children[i])) { i += 1; continue; }
 
@@ -59,13 +59,30 @@
           headingsToRemove.add(children[i - 1]);
         }
         
-        // 向後查找所有相同 variant 的程式碼區塊
+        // 只查找「連續」的相同 variant 的程式碼區塊
+        // 如果中間遇到非標題元素，就停止合併
         let j = i + 1;
         while (j < children.length) {
-          if (isCodeBlock(children[j]) && getVariant(children[j]) === variant) {
-            // 找到相同 variant 的區塊
-            preGroup.push(children[j]);
-            handled.add(children[j]);
+          const currEl = children[j];
+          
+          if (isCodeBlock(currEl) && getVariant(currEl) === variant) {
+            // 檢查 i 和 j 之間是否只有標題或已處理的元素
+            let hasNonHeadingBetween = false;
+            for (let k = i + 1; k < j; k++) {
+              if (!isHeading(children[k]) && !handled.has(children[k])) {
+                hasNonHeadingBetween = true;
+                break;
+              }
+            }
+            
+            if (hasNonHeadingBetween) {
+              // 中間有非標題內容，停止合併
+              break;
+            }
+            
+            // 中間只有標題，可以合併
+            preGroup.push(currEl);
+            handled.add(currEl);
             
             // 檢查這個區塊前面是否有標題
             if (j > 0 && isHeading(children[j - 1]) && !handled.has(children[j - 1])) {
@@ -73,11 +90,12 @@
               handled.add(children[j - 1]);
             }
             j += 1;
-          } else if (!handled.has(children[j])) {
-            // 遇到其他元素，繼續往後找
+          } else if (isHeading(currEl)) {
+            // 跳過標題，繼續往後看
             j += 1;
           } else {
-            j += 1;
+            // 遇到其他元素（文字、段落等），停止合併
+            break;
           }
         }
         
