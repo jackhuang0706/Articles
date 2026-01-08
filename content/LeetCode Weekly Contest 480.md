@@ -1,7 +1,6 @@
 ---
 title: LeetCode Weekly Contest 480
 tags: [演算法, LeetCode, 線段樹]
-
 ---
 
 這是我第一次在 LeetCode 週賽 AK，寫完非常地開心，雖然我覺得第四題 Hard 只是在線段樹的模板上加一些修改，有點水，但還是想說來記錄一下。

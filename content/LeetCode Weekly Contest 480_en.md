@@ -1,7 +1,6 @@
 ---
 title: LeetCode Weekly Contest 480
-tags: [Algorithm, LeetCode, Segment Tree]
-
+tags: [Algorithms, LeetCode, Segment Tree]
 ---
 
 This is the first time I got AK in LeetCode Weekly Contest, and I felt accomplished with that. As a result, I'd like to record it as my first article. 

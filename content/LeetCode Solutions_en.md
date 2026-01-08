@@ -1,7 +1,6 @@
 ---
 title: Some Solutions of LeetCode problems
 tags: [LeetCode, New Language, Algorithm]
-
 ---
 
 ## Minimum Penalty for a Shop (2025/12/26 Daily)

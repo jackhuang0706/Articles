@@ -1,7 +1,6 @@
 ---
 title: LeetCode 一些算法紀錄與語法學習
 tags: [LeetCode, 語法學習, 演算法]
-
 ---
 
 ## Minimum Penalty for a Shop (2025/12/26 Daily)

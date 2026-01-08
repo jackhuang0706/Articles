@@ -1,7 +1,7 @@
 ---
 title: LeetCode Daily Solutions 2026 Jan_1
-tags: [LeetCode]
 
+tags: [LeetCode]
 ---
 
 

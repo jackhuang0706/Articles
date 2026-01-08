@@ -6,6 +6,7 @@ const { marked } = require("marked");
 const matter = require("gray-matter");
 const hljs = require("highlight.js");
 const markedKatex = require("marked-katex-extension");
+const { execSync } = require("child_process");
 
 function escapeAttr(value) {
   return String(value)
@@ -28,6 +29,18 @@ function cleanHeadingText(text) {
     .replace(/[\r\t]/g, " ")
     .replace(/<[^>]*>/g, "")
     .trim();
+}
+
+function getGitDate(filePath) {
+  try {
+    const date = execSync(
+      `git log -1 --format=%cI "${filePath}"`,
+      { encoding: 'utf8', stdio: ['pipe', 'pipe', 'ignore'] }
+    ).trim();
+    return date ? date.split('T')[0] : null;
+  } catch {
+    return null;
+  }
 }
 
 const renderer = {
@@ -140,11 +153,14 @@ async function loadArticles() {
     const target = byLocale[lang];
     if (!target) continue;
 
+    const gitDate = getGitDate(filePath);
+    const fallbackDate = stats.mtime.toISOString().split("T")[0];
+
     target.push({
       id,
       title: (data.title || id).trim().replace(/\n/g, ' '),
       summary: data.summary || "",
-      date: data.date || stats.mtime.toISOString().split("T")[0],
+      date: data.date || gitDate || fallbackDate,
       tags: data.tags || [],
       file: `/content/${file}`,
       content
