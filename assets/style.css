@@ -491,6 +491,19 @@ body {
   border: 1px solid var(--border-soft);
 }
 
+.article-body a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--border-soft);
+  text-underline-offset: 3px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.article-body a:hover {
+  color: var(--muted-strong);
+  text-decoration-color: var(--muted-strong);
+}
+
 .muted {
   color: var(--muted);
   margin: 0;

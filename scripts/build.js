@@ -14,13 +14,23 @@ function escapeAttr(value) {
     .replace(/"/g, "&quot;");
 }
 
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
 const renderer = {
   heading(token) {
-    // 生成 slug ID，並清理 text 中的換行和控制字符
-    const cleanText = token.text
-      .replace(/\\/g, '') // 移除反斜線
-      .replace(/\n/g, '') // 移除換行符
-      .replace(/[\r\t]/g, ' ') // 其他空白轉為空格
+    // 渲染標題內的行內 Markdown（保留連結、程式碼、數學）
+    const innerHtml = marked.parseInline(token.text);
+    // 從渲染後的 HTML 生成 slug 所需的淨文字
+    const cleanText = innerHtml
+      .replace(/\\/g, '')
+      .replace(/\n/g, '')
+      .replace(/[\r\t]/g, ' ')
+      .replace(/<[^>]*>/g, '')
       .trim();
     
     const id = cleanText
@@ -31,7 +41,14 @@ const renderer = {
       .replace(/\s+/g, '-') // 空格轉連字號
       .replace(/-+/g, '-') // 多個連字號合併
       .replace(/^-|-$/g, ''); // 移除首尾連字號
-    return `<h${token.depth} id="${id}">${cleanText}</h${token.depth}>`;
+    return `<h${token.depth} id="${id}">${innerHtml}</h${token.depth}>`;
+  },
+  link(token) {
+    const href = typeof token.href === "string" ? token.href : String(token.href ?? "");
+    const title = typeof token.title === "string" ? token.title : "";
+    const text = typeof token.text === "string" ? token.text : String(token.text ?? "");
+    const titleAttr = title ? ` title="${escapeAttr(title)}"` : "";
+    return `<a href="${escapeAttr(href)}"${titleAttr} target="_blank" rel="noopener noreferrer">${escapeHtml(text)}</a>`;
   },
   code(codeArg, infoString = "") {
     let source = "";
@@ -79,13 +96,15 @@ function extractTOC(content) {
   const tokens = marked.lexer(content);
   tokens.forEach((token) => {
     if (token.type === "heading" && token.depth >= 2 && token.depth <= 3) {
-      const cleanText = token.text
-        .replace(/\\/g, '') // 移除反斜線
-        .replace(/\n/g, '') // 移除換行符
-        .replace(/[\r\t]/g, ' ') // 其他空白轉為空格
+      // 將行內 Markdown 渲染為 HTML，再去標籤成為純文字，避免側欄出現原始 Markdown
+      const innerHtml = marked.parseInline(token.text);
+      const cleanText = innerHtml
+        .replace(/\\/g, '')
+        .replace(/\n/g, '')
+        .replace(/[\r\t]/g, ' ')
+        .replace(/<[^>]*>/g, '')
         .trim();
-      
-      // 使用與 marked 相同的 slug 生成邏輯
+
       const id = cleanText
         .toLowerCase()
         .replace(/<[^>]*>/g, '') // 移除 HTML 標籤

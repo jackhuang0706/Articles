@@ -14,6 +14,13 @@ function escapeAttr(value) {
     .replace(/"/g, "&quot;");
 }
 
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
 function cleanHeadingText(text) {
   return String(text)
     .replace(/\\/g, "")
@@ -26,7 +33,10 @@ function cleanHeadingText(text) {
 const renderer = {
   // Use token-style heading to match build.js behavior and keep IDs consistent
   heading(token) {
-    const cleanText = cleanHeadingText(token.text);
+    // Render inline markdown (links, code, math) inside heading content
+    const innerHtml = marked.parseInline(token.text);
+    // Generate slug from the rendered HTML's text content
+    const cleanText = cleanHeadingText(innerHtml);
     const id = cleanText
       .toLowerCase()
       .replace(/<[^>]*>/g, '')
@@ -35,7 +45,14 @@ const renderer = {
       .replace(/\s+/g, '-')
       .replace(/-+/g, '-')
       .replace(/^-|-$/g, '');
-    return `<h${token.depth} id="${id}">${cleanText}</h${token.depth}>`;
+    return `<h${token.depth} id="${id}">${innerHtml}</h${token.depth}>`;
+  },
+  link(token) {
+    const href = typeof token.href === "string" ? token.href : String(token.href ?? "");
+    const title = typeof token.title === "string" ? token.title : "";
+    const text = typeof token.text === "string" ? token.text : String(token.text ?? "");
+    const titleAttr = title ? ` title="${escapeAttr(title)}"` : "";
+    return `<a href="${escapeAttr(href)}"${titleAttr} target="_blank" rel="noopener noreferrer">${escapeHtml(text)}</a>`;
   },
   code(codeArg, infoString = "") {
     let source = "";
@@ -193,7 +210,9 @@ function extractTOC(content) {
   const tokens = marked.lexer(content);
   tokens.forEach((token) => {
     if (token.type === "heading" && token.depth >= 2 && token.depth <= 3) {
-      const cleanText = cleanHeadingText(token.text);
+      // Render inline markdown to strip markdown syntax but keep text; then clean
+      const innerHtml = marked.parseInline(token.text);
+      const cleanText = cleanHeadingText(innerHtml);
       const id = cleanText
         .toLowerCase()
         .replace(/<[^>]*>/g, '')
