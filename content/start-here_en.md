@@ -1,7 +1,7 @@
 ---
-title: Markdown Syntax Full Test
+title: Markdown Syntax Test
 summary: Examples covering headings, lists, tables, links, images, and multi-language code blocks.
-tags: [Markdown, Test, Syntax]
+tags: [Markdown]
 ---
 
 # Headings and Paragraphs

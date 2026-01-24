@@ -1,7 +1,7 @@
 ---
-title: Markdown 語法全面測試
+title: Markdown 語法測試
 summary: 範例涵蓋標題、列表、表格、連結、圖片、程式碼區塊（多語言語法高亮）。
-tags: [Markdown, 測試, 語法]
+tags: [Markdown]
 ---
 
 # 標題與段落
